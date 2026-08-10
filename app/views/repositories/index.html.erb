@@ -1,0 +1,25 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-4xl font-bold mb-8">Portfolio - Featured Projects</h1>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% @repositories.each do |repo| %>
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold mb-2"><%= repo.name %></h2>
+        <p class="text-gray-600 mb-4"><%= repo.description %></p>
+        
+        <div class="flex items-center gap-4 mb-4">
+          <span class="text-sm"><%= repo.language %></span>
+          <span class="text-sm">⭐ <%= repo.stargazers_count %></span>
+          <span class="text-sm">🍴 <%= repo.forks_count %></span>
+        </div>
+        
+        <div class="flex gap-2">
+          <%= link_to "View Details", repository_path(repo), class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+          <% if repo.has_docker %>
+            <%= link_to "🐳 Launch", repo.pwd_launch_url, target: "_blank", class: "bg-green-500 text-white px-4 py-2 rounded" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+services:
+  # Web Service
+  - type: web
+    name: portfolio-web
+    env: ruby
+    region: oregon
+    plan: free
+    buildCommand: bundle install && rails db:migrate && rails assets:precompile
+    startCommand: bundle exec puma -C config/puma.rb
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GITHUB_USERNAME
+        value: AmosAlloyce
+      - key: DATABASE_URL
+        fromDatabase:
+          name: portfolio-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: portfolio-redis
+          type: redis
+          property: connectionString
+
+  # PostgreSQL Database
+  - type: pstg
+    name: portfolio-db
+    region: oregon
+    plan: free
+    databaseName: portfolio_production
+    databaseUser: portfolio
+
+  # Redis Cache
+  - type: redis
+    name: portfolio-redis
+    region: oregon
+    plan: free
+    maxmemoryPolicy: allkeys-lru
