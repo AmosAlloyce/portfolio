@@ -1,11 +1,14 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Header = () => {
+  const navigate = useNavigate()
+
   return (
     <header className="border-b border-white/10 backdrop-blur-lg bg-white/5 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+          <Link to="/" className="flex items-center space-x-4 cursor-pointer hover:opacity-80 transition-opacity">
             <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 flex items-center justify-center font-bold text-xl">
               P
             </div>
@@ -15,17 +18,21 @@ const Header = () => {
               </h1>
               <p className="text-sm text-gray-400">Software Engineer</p>
             </div>
-          </div>
+          </Link>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#projects" className="text-gray-300 hover:text-white transition-colors">
+            <button 
+              onClick={() => navigate('/')}
+              className="text-gray-300 hover:text-white transition-colors"
+            >
               Projects
-            </a>
-            <a href="#about" className="text-gray-300 hover:text-white transition-colors">
-              About
-            </a>
-            <a href="https://github.com/AmosAlloyce" target="_blank" rel="noopener noreferrer" 
-               className="btn-secondary">
+            </button>
+            <a 
+              href="https://github.com/AmosAlloyce" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn-secondary"
+            >
               GitHub
             </a>
           </nav>
