@@ -5,7 +5,7 @@ services:
     env: ruby
     region: oregon
     plan: free
-    buildCommand: mkdir -p public && cp -r app/assets/builds/* public/ && ls -la public/ && bundle install && rails db:migrate && rails assets:precompile
+    buildCommand: bundle install && rails db:migrate && rails assets:precompile
     startCommand: bundle exec puma -C config/puma.rb
     envVars:
       - key: RAILS_ENV
