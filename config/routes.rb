@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # Serve React frontend - catch-all route for client-side routing
   # This must be LAST to not interfere with API routes
   get '*path', to: 'application#fallback_index_html', constraints: ->(request) do
-    !request.xhr? && request.format.html?
+    !request.xhr? && !request.path.start_with?('/rails/') && !request.path.start_with?('/assets/')
   end
   
   # Root route
