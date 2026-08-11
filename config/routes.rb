@@ -16,9 +16,6 @@ Rails.application.routes.draw do
   # Health check endpoint
   get "up" => "rails/health#show", as: :rails_health_check
   
-  # Repository routes for backward compatibility
-  resources :repositories, only: [:index, :show]
-  
   # Serve React frontend - catch-all route for client-side routing
   # This must be LAST to not interfere with API routes
   get '*path', to: 'application#fallback_index_html', constraints: ->(request) do
