@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Root route - Serve React frontend
-  root to: redirect('/index.html')
+  # Root route - Serve React frontend from public directory
+  # Rails will automatically serve public/index.html for root path
+  # No explicit route needed - static files in public/ are served automatically
   
   # Repository routes
   resources :repositories, only: [:index, :show]
