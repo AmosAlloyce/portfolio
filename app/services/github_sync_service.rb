@@ -110,7 +110,8 @@ class GithubSyncService
   
   def fetch_readme(full_name)
     readme = @client.readme(full_name, accept: 'application/vnd.github.raw')
-    readme.content
+    # When using 'application/vnd.github.raw', Octokit returns the content directly as a string
+    readme.is_a?(String) ? readme : readme.content
   rescue Octokit::NotFound
     nil
   end
