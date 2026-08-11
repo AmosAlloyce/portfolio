@@ -1,14 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Root route - Serve React frontend from public directory
-  # Rails will automatically serve public/index.html for root path
-  # No explicit route needed - static files in public/ are served automatically
-  
-  # Repository routes
-  resources :repositories, only: [:index, :show]
-  
-  # API routes
+  # API routes - must come BEFORE catch-all
   namespace :api do
     # Chat endpoint for AI assistant
     post 'chat', to: 'chat#create'
@@ -22,4 +15,16 @@ Rails.application.routes.draw do
   
   # Health check endpoint
   get "up" => "rails/health#show", as: :rails_health_check
+  
+  # Repository routes for backward compatibility
+  resources :repositories, only: [:index, :show]
+  
+  # Serve React frontend - catch-all route for client-side routing
+  # This must be LAST to not interfere with API routes
+  get '*path', to: 'application#fallback_index_html', constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
+  
+  # Root route
+  root 'application#fallback_index_html'
 end
