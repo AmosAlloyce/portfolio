@@ -16,9 +16,9 @@ const RepositoryCard = ({ repository }) => {
   return (
     <div className="card-gradient rounded-2xl p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/20 group">
       {/* Header */}
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex-1">
-          <h3 className="text-2xl font-bold mb-2 group-hover:text-primary-400 transition-colors">
+      <div className="flex items-start justify-between mb-4 gap-3">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-2xl font-bold mb-2 group-hover:text-primary-400 transition-colors break-words">
             {repository.name}
           </h3>
           {repository.language && (
@@ -29,7 +29,7 @@ const RepositoryCard = ({ repository }) => {
           )}
         </div>
         {repository.has_docker && (
-          <div className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-semibold border border-blue-500/30">
+          <div className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-semibold border border-blue-500/30 whitespace-nowrap flex-shrink-0">
             🐳 Docker
           </div>
         )}
