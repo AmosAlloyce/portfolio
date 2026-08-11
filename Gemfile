@@ -29,6 +29,10 @@ gem "tailwindcss-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# GitHub API client for syncing repositories
+gem "octokit", "~> 8.0"
+gem "faraday-retry"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
