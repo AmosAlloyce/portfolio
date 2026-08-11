@@ -5,7 +5,7 @@ services:
     env: ruby
     region: oregon
     plan: free
-    buildCommand: bundle install && rails db:migrate && rails assets:precompile
+    buildCommand: cd frontend && npm ci && npm run build && cd .. && cp -r frontend/dist/* public/ && bundle install && rails db:migrate && rails assets:precompile
     startCommand: bundle exec puma -C config/puma.rb
     envVars:
       - key: RAILS_ENV

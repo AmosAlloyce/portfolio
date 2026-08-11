@@ -25,6 +25,11 @@ class RepositoriesController < ApplicationController
     end
     
     @repositories = @repositories.order(display_order: :asc, stargazers_count: :desc)
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @repositories }
+    end
   end
   
   def show

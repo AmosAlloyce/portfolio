@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Root route - Portfolio dashboard
-  root "repositories#index"
+  # Root route - Serve React frontend
+  root to: redirect('/index.html')
   
   # Repository routes
   resources :repositories, only: [:index, :show]
@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     
     # Sync repositories from GitHub
     post 'sync', to: 'sync#create'
+    
+    # Repository API endpoints for React frontend
+    resources :repositories, only: [:index, :show]
   end
   
   # Health check endpoint
