@@ -66,13 +66,13 @@ const RepositoryCard = ({ repository }) => {
         >
           View Details
         </a>
-        {repository.has_docker && repository.pwd_launch_url && (
+        {repository.has_docker && repository.quick_start_url && (
           <a
-            href={repository.pwd_launch_url}
+            href={repository.quick_start_url}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300"
-            title="Launch with Docker"
+            title="Open in GitHub Codespaces"
           >
             🚀
           </a>

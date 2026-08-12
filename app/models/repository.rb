@@ -22,15 +22,20 @@ class Repository < ApplicationRecord
     []
   end
   
-  def pwd_launch_url
+  def quick_start_url
     return nil unless has_docker
     
-    if docker_compose_url.present?
-      "https://labs.play-with-docker.com/?stack=#{CGI.escape(docker_compose_url)}"
-    elsif dockerfile_url.present?
-      # For single Dockerfile, create a simple stack reference
-      "https://labs.play-with-docker.com/?stack=#{CGI.escape(dockerfile_url)}"
+    # GitHub Codespaces URL - opens repository in a cloud development environment
+    if html_url.present?
+      "https://github.dev/#{full_name}"
     end
+  end
+  
+  def docker_setup_url
+    return nil unless has_docker
+    
+    # Direct link to docker-compose.yml for easy download
+    docker_compose_url || dockerfile_url
   end
   
   private
