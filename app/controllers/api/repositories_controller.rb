@@ -13,7 +13,9 @@ module Api
       }
       
       @repositories = Repository.all.sort_by { |r| order_map[r.name] || 999 }
-      render json: @repositories
+      
+      # Include pwd_launch_url in JSON response
+      render json: @repositories.as_json(methods: [:pwd_launch_url])
     rescue => e
       Rails.logger.error "Error fetching repositories: #{e.message}"
       render json: { error: 'Failed to fetch repositories' }, status: :internal_server_error
@@ -21,7 +23,7 @@ module Api
 
     def show
       @repository = Repository.find(params[:id])
-      render json: @repository
+      render json: @repository.as_json(methods: [:pwd_launch_url])
     rescue ActiveRecord::RecordNotFound
       render json: { error: 'Repository not found' }, status: :not_found
     rescue => e
