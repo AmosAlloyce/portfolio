@@ -1,4 +1,4 @@
-# Portfolio Website - AI-Powered GitHub Showcase
+# Portfolio Website 
 
 A Ruby on Rails portfolio website that showcases your top GitHub repositories with AI-powered descriptions, code analysis, and one-click Docker container launching via Play-with-Docker.
 
