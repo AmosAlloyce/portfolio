@@ -9,12 +9,12 @@ const Header = () => {
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-4 cursor-pointer hover:opacity-80 transition-opacity">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 flex items-center justify-center font-bold text-xl">
-              P
+            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 flex items-center justify-center font-bold text-2xl">
+              🚀
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
-                Portfolio
+                Alloyce Amos
               </h1>
               <p className="text-sm text-gray-400">Software Engineer</p>
             </div>
