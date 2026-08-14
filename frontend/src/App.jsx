@@ -185,7 +185,7 @@ function RepositoryDetail() {
           </div>
         </div>
 
-        <div className="mt-8 flex gap-4">
+        <div className="mt-8 flex flex-wrap gap-4">
           <a 
             href={repository.html_url}
             target="_blank"
@@ -194,6 +194,16 @@ function RepositoryDetail() {
           >
             View on GitHub →
           </a>
+          {repository.has_docker && repository.quick_start_url && (
+            <a 
+              href={repository.quick_start_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5"
+            >
+              🚀 Launch in Codespaces
+            </a>
+          )}
           {repository.docker_compose_url && (
             <a 
               href={repository.docker_compose_url}

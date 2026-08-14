@@ -125,10 +125,10 @@ const ChatWidget = () => {
                   className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                     message.role === 'user'
                       ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white'
-                      : 'bg-dark-800 text-gray-200 border border-white/10'
+                      : 'bg-gray-800 text-gray-100 border border-gray-700'
                   }`}
                 >
-                  <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p>
+                  <p className="text-sm whitespace-pre-wrap break-words text-inherit">{message.content}</p>
                 </div>
               </div>
             ))}

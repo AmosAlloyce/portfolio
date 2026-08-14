@@ -2,7 +2,7 @@ require 'faraday'
 require 'json'
 
 class GroqService
-  BASE_URL = 'https://api.groq.com/openai/v1'
+  BASE_URL = 'https://api.groq.com'
   MODEL = 'llama-3.1-70b-versatile'
   
   def initialize
@@ -72,7 +72,7 @@ class GroqService
   private
   
   def chat_completion(prompt)
-    response = @client.post('/chat/completions') do |req|
+    response = @client.post('/openai/v1/chat/completions') do |req|
       req.headers['Authorization'] = "Bearer #{@api_key}"
       req.headers['Content-Type'] = 'application/json'
       req.body = {
@@ -97,7 +97,7 @@ class GroqService
   end
   
   def chat_completion_with_messages(messages)
-    response = @client.post('/chat/completions') do |req|
+    response = @client.post('/openai/v1/chat/completions') do |req|
       req.headers['Authorization'] = "Bearer #{@api_key}"
       req.headers['Content-Type'] = 'application/json'
       req.body = {
