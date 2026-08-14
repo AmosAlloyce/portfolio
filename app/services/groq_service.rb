@@ -3,7 +3,7 @@ require 'json'
 
 class GroqService
   BASE_URL = 'https://api.groq.com'
-  MODEL = 'llama-3.3-70b-versatile'
+  MODEL = 'openai/gpt-oss-120b'
   
   def initialize
     @api_key = ENV['GROQ_API_KEY']
