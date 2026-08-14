@@ -135,7 +135,7 @@ const ChatWidget = () => {
             
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-dark-800 border border-white/10 rounded-2xl px-4 py-3">
+                <div className="bg-gray-800 border border-gray-700 rounded-2xl px-4 py-3">
                   <div className="flex space-x-2">
                     <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
                     <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
@@ -159,7 +159,7 @@ const ChatWidget = () => {
                 onKeyPress={handleKeyPress}
                 placeholder="Ask about projects..."
                 disabled={isLoading}
-                className="flex-1 bg-dark-800 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50"
+                className="flex-1 bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50"
               />
               <button
                 type="submit"
