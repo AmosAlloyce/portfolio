@@ -97,6 +97,8 @@ class GroqService
   end
   
   def chat_completion_with_messages(messages)
+    Rails.logger.info "Groq API Request - Model: #{MODEL}, Messages: #{messages.inspect}"
+    
     response = @client.post('/openai/v1/chat/completions') do |req|
       req.headers['Authorization'] = "Bearer #{@api_key}"
       req.headers['Content-Type'] = 'application/json'
@@ -108,17 +110,19 @@ class GroqService
       }
     end
     
+    Rails.logger.info "Groq API Response - Status: #{response.status}, Body: #{response.body.inspect}"
+    
     if response.success?
       {
         content: response.body.dig('choices', 0, 'message', 'content'),
         tokens_used: response.body.dig('usage', 'total_tokens')
       }
     else
-      Rails.logger.error "Groq API error: #{response.body}"
+      Rails.logger.error "Groq API error - Status: #{response.status}, Body: #{response.body}"
       { content: "I'm sorry, I encountered an error. Please try again.", tokens_used: 0 }
     end
   rescue => e
-    Rails.logger.error "Groq API exception: #{e.message}"
+    Rails.logger.error "Groq API exception: #{e.class} - #{e.message}\n#{e.backtrace.first(5).join("\n")}"
     { content: "I'm sorry, I encountered an error. Please try again.", tokens_used: 0 }
   end
   
