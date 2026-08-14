@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import RepositoryCard from './components/RepositoryCard'
 import Header from './components/Header'
 import LoadingSpinner from './components/LoadingSpinner'
+import ChatWidget from './components/ChatWidget'
 
 function HomePage() {
   const [repositories, setRepositories] = useState([])
@@ -79,10 +80,10 @@ function HomePage() {
           </div>
         </div>
 
-        {/* Repository Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Repository List */}
+        <div className="space-y-6">
           {repositories.map((repo) => (
-            <RepositoryCard key={repo.id} repository={repo} />
+            <RepositoryCard key={repo.id} repository={repo} fullWidth={true} />
           ))}
         </div>
       </section>
@@ -217,6 +218,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/repositories/:id" element={<RepositoryDetail />} />
       </Routes>
+      <ChatWidget />
     </div>
   )
 }
