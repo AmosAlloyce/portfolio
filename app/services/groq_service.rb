@@ -3,7 +3,7 @@ require 'json'
 
 class GroqService
   BASE_URL = 'https://api.groq.com'
-  MODEL = 'llama-3.1-70b-versatile'
+  MODEL = 'llama-3.3-70b-versatile'
   
   def initialize
     @api_key = ENV['GROQ_API_KEY']
