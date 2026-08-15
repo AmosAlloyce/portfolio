@@ -2,7 +2,6 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Type from './Type'
 import { AiFillGithub } from 'react-icons/ai'
-import { FaLinkedinIn } from 'react-icons/fa'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -77,7 +76,7 @@ const Home = () => {
               <p>
                 My key areas of interest include developing{" "}
                 <span className="purple font-semibold">
-                  Web Applications, Cloud Solutions,
+                  Web Applications, AI Support Systems, Cloud Solutions,
                 </span>
                 {" "}and exploring modern DevOps practices.
               </p>
@@ -134,19 +133,6 @@ const Home = () => {
               }}
             >
               <AiFillGithub />
-            </a>
-            
-            <a
-              href="https://linkedin.com/in/alloyce-amos"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-14 h-14 rounded-full flex items-center justify-center text-2xl transition-all duration-300 hover:scale-110"
-              style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(199, 112, 240, 0.3)'
-              }}
-            >
-              <FaLinkedinIn />
             </a>
           </div>
         </div>
