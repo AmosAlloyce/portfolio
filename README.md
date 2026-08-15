@@ -57,7 +57,6 @@ A modern, full-stack portfolio website featuring a stunning purple-themed design
 ## 📋 Prerequisites
 
 - Docker and Docker Compose installed
-- GitHub Personal Access Token
 - Groq API Key
 
 ## 🚀 Quick Start
