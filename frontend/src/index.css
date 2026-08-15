@@ -2,37 +2,168 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Purple Portfolio Theme Variables */
+:root {
+  --section-background-color: linear-gradient(
+    to bottom left,
+    rgba(17, 16, 16, 0.582),
+    rgba(12, 8, 24, 0.904)
+  );
+  --image-gradient: linear-gradient(
+    to bottom left,
+    rgba(17, 16, 16, 0.678),
+    rgba(12, 10, 22, 0.863)
+  );
+  --imp-text-color: #c770f0;
+  --purple-primary: #c770f0;
+  --purple-accent: #be50f4;
+  --purple-dark: #0c0513;
+  --purple-bg: #1b1a2ea9;
+}
+
 @layer base {
   body {
-    @apply bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900;
-    @apply min-h-screen;
-    @apply text-white;
+    @apply min-h-screen text-white;
+    background-color: var(--purple-dark);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d1950;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(178, 121, 216, 0.959);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(222, 130, 235, 0.911);
+  border-radius: 12px;
+}
+
+/* Purple Theme Utilities */
+.purple {
+  color: var(--imp-text-color) !important;
+}
+
+.purple-gradient {
+  background: linear-gradient(135deg, var(--purple-primary), var(--purple-accent));
+}
+
+/* Wave Animation for Emojis */
+.wave {
+  animation-name: wave-animation;
+  animation-duration: 2.1s;
+  animation-iteration-count: infinite;
+  transform-origin: 70% 70%;
+  display: inline-block;
+}
+
+@keyframes wave-animation {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Particle Background Container */
+#tsparticles {
+  position: fixed !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 @layer components {
   .card-gradient {
-    @apply bg-gradient-to-br from-white/10 to-white/5;
-    @apply backdrop-blur-lg;
-    @apply border border-white/20;
+    @apply backdrop-blur-lg border border-white/20;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 5px 3px rgba(119, 53, 136, 0.459);
+    transition: all 0.5s ease;
+  }
+  
+  .card-gradient:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 4px 5px rgba(129, 72, 144, 0.561);
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-500 to-accent-500;
-    @apply hover:from-primary-600 hover:to-accent-600;
-    @apply text-white font-semibold;
-    @apply px-6 py-3 rounded-lg;
-    @apply transition-all duration-300;
-    @apply shadow-lg hover:shadow-xl;
-    @apply transform hover:-translate-y-1;
+    @apply text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300;
+    background-color: #623686;
+    border: 1px solid #623686;
+  }
+  
+  .btn-primary:hover {
+    background-color: #6d20c5d7;
+    border-color: #6d20c5d7;
+    transform: translateY(-2px);
   }
   
   .btn-secondary {
-    @apply bg-white/10 hover:bg-white/20;
-    @apply backdrop-blur-sm;
-    @apply border border-white/30;
-    @apply text-white font-semibold;
-    @apply px-6 py-3 rounded-lg;
-    @apply transition-all duration-300;
+    @apply backdrop-blur-sm border border-white/30 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300;
+    background: rgba(255, 255, 255, 0.1);
   }
+  
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Purple themed repository cards */
+  .repo-card {
+    @apply rounded-lg p-6 transition-all duration-300;
+    background-color: transparent;
+    box-shadow: 0 4px 5px 3px rgba(119, 53, 136, 0.459);
+    border: 1px solid rgba(200, 137, 230, 0.3);
+  }
+
+  .repo-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 4px 5px rgba(129, 72, 144, 0.561);
+  }
+
+  /* Tech stack badges with purple theme */
+  .tech-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-all duration-300;
+    background: rgba(199, 112, 240, 0.2);
+    border: 1px solid rgba(199, 112, 240, 0.4);
+    color: #c770f0;
+  }
+
+  .tech-badge:hover {
+    background: rgba(199, 112, 240, 0.3);
+    transform: scale(1.05);
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+button, a, .card-gradient, .repo-card {
+  transition: all 0.3s ease;
+}
+
+button:focus, a:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(199, 112, 240, 0.5);
 }

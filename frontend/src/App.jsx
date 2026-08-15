@@ -4,6 +4,7 @@ import RepositoryCard from './components/RepositoryCard'
 import Header from './components/Header'
 import LoadingSpinner from './components/LoadingSpinner'
 import ChatWidget from './components/ChatWidget'
+import Particle from './components/Particle'
 
 function HomePage() {
   const [repositories, setRepositories] = useState([])
@@ -223,6 +224,7 @@ function RepositoryDetail() {
 function App() {
   return (
     <div className="min-h-screen">
+      <Particle />
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />

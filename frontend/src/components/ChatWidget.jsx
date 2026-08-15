@@ -91,16 +91,32 @@ const ChatWidget = () => {
     <>
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 h-[600px] bg-dark-900/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col z-50 animate-slide-up">
+        <div 
+          className="fixed bottom-24 right-6 w-96 h-[600px] backdrop-blur-xl rounded-2xl shadow-2xl flex flex-col z-50 animate-slide-up"
+          style={{
+            background: 'rgba(27, 26, 46, 0.95)',
+            border: '1px solid rgba(199, 112, 240, 0.3)',
+            boxShadow: '0 8px 32px rgba(119, 53, 136, 0.4)'
+          }}
+        >
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-white/10">
+          <div 
+            className="flex items-center justify-between p-4"
+            style={{ borderBottom: '1px solid rgba(199, 112, 240, 0.2)' }}
+          >
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 flex items-center justify-center">
+              <div 
+                className="w-10 h-10 rounded-full flex items-center justify-center"
+                style={{
+                  background: 'linear-gradient(135deg, #c770f0, #be50f4)',
+                  boxShadow: '0 4px 15px rgba(199, 112, 240, 0.4)'
+                }}
+              >
                 <span className="text-xl">🤖</span>
               </div>
               <div>
                 <h3 className="font-semibold text-white">Portfolio Assistant</h3>
-                <p className="text-xs text-gray-400">Powered by Groq AI</p>
+                <p className="text-xs" style={{ color: '#c770f0' }}>Powered by Groq AI</p>
               </div>
             </div>
             <button
@@ -124,9 +140,20 @@ const ChatWidget = () => {
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                     message.role === 'user'
-                      ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white'
-                      : 'bg-gray-800 text-gray-100 border border-gray-700'
+                      ? 'text-white'
+                      : 'text-gray-100'
                   }`}
+                  style={
+                    message.role === 'user'
+                      ? {
+                          background: 'linear-gradient(135deg, #c770f0, #be50f4)',
+                          boxShadow: '0 4px 15px rgba(199, 112, 240, 0.3)'
+                        }
+                      : {
+                          background: 'rgba(255, 255, 255, 0.05)',
+                          border: '1px solid rgba(199, 112, 240, 0.2)'
+                        }
+                  }
                 >
                   <p className="text-sm whitespace-pre-wrap break-words text-inherit">{message.content}</p>
                 </div>
@@ -135,11 +162,17 @@ const ChatWidget = () => {
             
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-gray-800 border border-gray-700 rounded-2xl px-4 py-3">
+                <div 
+                  className="rounded-2xl px-4 py-3"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(199, 112, 240, 0.2)'
+                  }}
+                >
                   <div className="flex space-x-2">
-                    <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                    <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                    <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#c770f0', animationDelay: '0ms' }}></div>
+                    <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#c770f0', animationDelay: '150ms' }}></div>
+                    <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#c770f0', animationDelay: '300ms' }}></div>
                   </div>
                 </div>
               </div>
@@ -149,7 +182,11 @@ const ChatWidget = () => {
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSendMessage} className="p-4 border-t border-white/10">
+          <form 
+            onSubmit={handleSendMessage} 
+            className="p-4"
+            style={{ borderTop: '1px solid rgba(199, 112, 240, 0.2)' }}
+          >
             <div className="flex space-x-2">
               <input
                 ref={inputRef}
@@ -159,12 +196,24 @@ const ChatWidget = () => {
                 onKeyPress={handleKeyPress}
                 placeholder="Ask about projects..."
                 disabled={isLoading}
-                className="flex-1 bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50"
+                className="flex-1 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none disabled:opacity-50 transition-all"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(199, 112, 240, 0.3)',
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.2)'
+                }}
+                onFocus={(e) => e.target.style.boxShadow = '0 0 0 2px rgba(199, 112, 240, 0.5)'}
+                onBlur={(e) => e.target.style.boxShadow = 'inset 0 2px 4px rgba(0, 0, 0, 0.2)'}
               />
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
-                className="bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl px-6 py-3 font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                className="rounded-xl px-6 py-3 font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{
+                  background: 'linear-gradient(135deg, #c770f0, #be50f4)',
+                  color: 'white',
+                  boxShadow: '0 4px 15px rgba(199, 112, 240, 0.4)'
+                }}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -178,8 +227,12 @@ const ChatWidget = () => {
       {/* Floating Button */}
       <button
         onClick={toggleChat}
-        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center z-50 group"
+        className="fixed bottom-6 right-6 w-16 h-16 rounded-full hover:scale-110 transition-transform flex items-center justify-center z-50 group"
         aria-label="Open chat"
+        style={{
+          background: 'linear-gradient(135deg, #c770f0, #be50f4)',
+          boxShadow: '0 8px 32px rgba(119, 53, 136, 0.6)'
+        }}
       >
         {isOpen ? (
           <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -191,7 +244,10 @@ const ChatWidget = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
             </svg>
             {messages.length === 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse"></span>
+              <span 
+                className="absolute -top-1 -right-1 w-4 h-4 rounded-full animate-pulse"
+                style={{ background: '#be50f4' }}
+              ></span>
             )}
           </>
         )}
