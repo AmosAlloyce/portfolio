@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 const Header = () => {
   const navigate = useNavigate()
+  const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -12,6 +13,8 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const isActive = (path) => location.pathname === path
 
   return (
     <header 
@@ -56,14 +59,34 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <button 
               onClick={() => navigate('/')}
-              className="text-gray-300 hover:text-white transition-colors relative group"
+              className={`transition-colors relative group ${
+                isActive('/') ? 'text-white' : 'text-gray-300 hover:text-white'
+              }`}
             >
-              Projects
+              Home
               <span 
-                className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300"
+                className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
+                  isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}
                 style={{ background: '#c770f0' }}
               ></span>
             </button>
+            
+            <button 
+              onClick={() => navigate('/projects')}
+              className={`transition-colors relative group ${
+                isActive('/projects') ? 'text-white' : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              Projects
+              <span 
+                className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
+                  isActive('/projects') ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}
+                style={{ background: '#c770f0' }}
+              ></span>
+            </button>
+            
             <a 
               href="https://github.com/AmosAlloyce" 
               target="_blank" 

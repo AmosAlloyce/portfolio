@@ -5,8 +5,9 @@ import Header from './components/Header'
 import LoadingSpinner from './components/LoadingSpinner'
 import ChatWidget from './components/ChatWidget'
 import Particle from './components/Particle'
+import Home from './components/Home'
 
-function HomePage() {
+function ProjectsPage() {
   const [repositories, setRepositories] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -32,7 +33,7 @@ function HomePage() {
   
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center pt-20">
         <div className="card-gradient p-8 rounded-2xl max-w-md">
           <h2 className="text-2xl font-bold text-red-400 mb-4">Error</h2>
           <p className="text-gray-300">{error}</p>
@@ -48,12 +49,12 @@ function HomePage() {
   }
 
   return (
-    <>
+    <div className="pt-20">
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16">
-        <div className="text-center mb-16 animate-float">
-          <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-primary-400 via-accent-400 to-primary-400 bg-clip-text text-transparent animate-gradient">
-            Featured Projects
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <span className="purple">Featured Projects</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Explore my portfolio of production-grade applications showcasing modern architecture, 
@@ -64,11 +65,11 @@ function HomePage() {
         {/* Stats Bar */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <div className="card-gradient p-6 rounded-xl text-center transform hover:scale-105 transition-transform">
-            <div className="text-4xl font-bold text-primary-400 mb-2">{repositories.length}</div>
+            <div className="text-4xl font-bold purple mb-2">{repositories.length}</div>
             <div className="text-gray-300">Projects</div>
           </div>
           <div className="card-gradient p-6 rounded-xl text-center transform hover:scale-105 transition-transform">
-            <div className="text-4xl font-bold text-accent-400 mb-2">
+            <div className="text-4xl font-bold purple mb-2">
               {repositories.reduce((sum, repo) => sum + repo.stargazers_count, 0)}
             </div>
             <div className="text-gray-300">Total Stars</div>
@@ -96,7 +97,7 @@ function HomePage() {
           <p className="mt-2">© 2026 Portfolio. All rights reserved.</p>
         </div>
       </footer>
-    </>
+    </div>
   )
 }
 
@@ -130,15 +131,15 @@ function RepositoryDetail() {
   
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center pt-20">
         <div className="card-gradient p-8 rounded-2xl max-w-md">
           <h2 className="text-2xl font-bold text-red-400 mb-4">Error</h2>
           <p className="text-gray-300">{error}</p>
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/projects')}
             className="btn-primary mt-6"
           >
-            Back to Home
+            Back to Projects
           </button>
         </div>
       </div>
@@ -146,16 +147,16 @@ function RepositoryDetail() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto px-4 py-16 pt-32">
       <button 
-        onClick={() => navigate('/')}
+        onClick={() => navigate('/projects')}
         className="btn-secondary mb-8"
       >
         ← Back to Projects
       </button>
 
       <div className="card-gradient p-8 rounded-2xl">
-        <h1 className="text-4xl font-bold mb-4 text-primary-400">{repository.name}</h1>
+        <h1 className="text-4xl font-bold mb-4 purple">{repository.name}</h1>
         
         {repository.description && (
           <p className="text-xl text-gray-300 mb-6">{repository.description}</p>
@@ -163,15 +164,15 @@ function RepositoryDetail() {
 
         <div className="flex flex-wrap gap-4 mb-8">
           {repository.language && (
-            <span className="px-4 py-2 bg-primary-500/20 text-primary-300 rounded-full">
+            <span className="tech-badge">
               {repository.language}
             </span>
           )}
-          <span className="px-4 py-2 bg-accent-500/20 text-accent-300 rounded-full">
+          <span className="tech-badge">
             ⭐ {repository.stargazers_count} stars
           </span>
           {repository.has_docker && (
-            <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full">
+            <span className="tech-badge">
               🐳 Docker Ready
             </span>
           )}
@@ -227,7 +228,8 @@ function App() {
       <Particle />
       <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/repositories/:id" element={<RepositoryDetail />} />
       </Routes>
       <ChatWidget />
